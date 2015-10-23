@@ -83,3 +83,9 @@ production:
   database: invndc
   username: DMS
   password: <%= ENV['DMS_DATABASE_PASSWORD'] %>
+
+localdb:
+  <<: *default
+  database: iMRP
+  username: DMS
+  password: <%= ENV['DMS_DATABASE_PASSWORD'] %>
