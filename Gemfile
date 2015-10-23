@@ -10,7 +10,7 @@ gem 'simple_form', '~> 3.1.0'
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'wice_grid', '~> 3.5.0'
-
+gem 'nprogress-rails'
 gem 'activerecord-jdbcpostgresql-adapter'
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 4.0.3'
