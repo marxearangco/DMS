@@ -19,7 +19,7 @@ end
 
 group :development do
 	gem 'spring'
-	gem 'rails', '4.0.5', 
+	gem 'rails', '4.0.5'
 	gem 'sass-rails', '~> 4.0.2'
 	gem 'uglifier', '>= 1.3.0'
 	gem 'coffee-rails', '~> 4.0.0'
