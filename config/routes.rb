@@ -1,12 +1,28 @@
-Rails.application.routes.draw do
-  resources :widgets
+DMS::Application.routes.draw do
+  
+  get "authenticate/attempt_login"
+  post "authenticate/attempt_login"
+  get "authenticate/login"
+  get "authenticate/logout"
+  root "main#index"
+  
+  resources :main do
+    member do
+      get 'search'
+      get 'view'
+      get 'user'
+      get 'image'
+      post 'save'
+      post 'create'
+      get 'create'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-
-  root 'welcome#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

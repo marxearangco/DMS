@@ -1,0 +1,67 @@
+<% @inv.each do |i| %>
+<div class="modal-header btn-danger">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title">Item Code: <%= i.code %></h4>
+</div>
+	<%= form_tag(save_main_path(i.code), remote: true, id: 'updateinv') do %>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-xs-8">
+				Item Name:
+				<%= text_field_tag :itemname, i.itemname, style: "text-align: center", class: "form-control" %> 
+			</div>
+			<div class="col-xs-4">
+				Part Number:
+				<%= text_field_tag :partnum, i.partnum, style: "text-align: center", class: "form-control" %> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				Details:
+				<%= text_field_tag :detail, i.detail, style: "text-align: center", class: "form-control" %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				location:
+				<%= select_tag :location, options_from_collection_for_select(@location, "vin", "vin", i.vin), class: "form-control" %>
+			</div>
+			<div class="col-xs-4">
+				Selling Price:
+				<%= text_field_tag :srp, i.srp, style: "text-align: center", class: "form-control" %>
+			</div>
+			<div class="col-xs-4">
+				Unit Cost:
+				<%= text_field_tag :cost, i.cost, style: "text-align: center", class: "form-control" %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				Beginning
+				<%= number_field_tag :beg, i.qtyBeg, style: "text-align: center", class: "form-control" %>
+			</div>
+			<div class="col-xs-3">
+				In
+				<%= number_field_tag :in, i.qtyIn, style: "text-align: center", class: "form-control" %>
+			</div>
+			<div class="col-xs-3">
+				Out
+				<%= number_field_tag :out, i.qtyOut, style: "text-align: center", class: "form-control" %>
+			</div>
+			<div class="col-xs-3">
+				Ending
+				<%= number_field_tag :end, i.qtyEnd, style: "text-align: center", class: "form-control" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<%= link_to raw('<i class="fa fa-angle-double-left fa-lg">‌</i>'), view_main_path(params[:id]), remote: true, data: { toggle: 'modal', target: "#viewitem" }, class: 'btn danger pull-left' %>
+		<%= submit_tag "Update", class: 'btn alert' %>
+	</div>
+	<% end %>
+<% end %>
+
+
+
+
