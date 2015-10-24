@@ -11,13 +11,14 @@ class MainController < ApplicationController
   end
 
   def index
-  	#tree
+    tree
   end
   
   def search
     parm = params[:id].split('-')
     find_item(parm[0],parm[1])
     session[:category]=params[:id]
+    tree
   end
 
   def view
@@ -120,30 +121,30 @@ def tree
 def find_item(parm0, parm1)
   if parm0=='0'
     @items = Inventory.select('tblinventory.code, a.partnum, a.itemname, qtyEnd, srp, a.vin').joins('Left Join tblitem a on a.code = tblinventory.code').where('a.idCategory=?',parm1)
-    # search = Category.where('idCategory=?',parm1)
-    # search.each do |s|
-    #   @search = s.Category
-    # end
+    search = Category.where('idCategory=?',parm1)
+    search.each do |s|
+      @search = s.Category
+    end
     @listitems = initialize_grid(Item.where("idBrand=?",parm1),
     per_page: '10'
     )
-  tree
+  #tree
   else
     @items = Inventory.select('tblinventory.code, a.partnum, a.itemname, qtyEnd, srp, a.vin').joins('Left Join tblitem a on a.code = tblinventory.code').where('a.idCategory=? and a.idBrand=?',parm0,parm1)
-    # search = Brand.where('idbrand=?',parm1)
-    # search.each do |s|
-    #   @search = s.brandName
-    # end
+    search = Brand.where('idbrand=?',parm1)
+    search.each do |s|
+      @search = s.brandName
+    end
     @listitems = initialize_grid(Item.where("idCategory=? and idBrand=?",parm0,parm1),
     per_page: '10'
     )
-  tree
+  #tree
   end
 #  @items = Inventory.select('tblinventory.code, a.partnum, a.itemname, qtyEnd, srp, a.vin').joins('Left Join tblitem a on a.code = tblinventory.code').where('a.idCategory=? and a.idBrand=?',parm0,parm1)
  # @listitems = initialize_grid(Item.where("idCategory=? and idBrand=?",parm0,parm1),
   #  per_page: '10'
   #  )
-  tree
+  # tree
     # :include=> [{:inventory=>:code}],
 
 
